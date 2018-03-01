@@ -1,0 +1,31 @@
+---
+title: "Diamond sizes"
+output:
+  pdf_document: default
+  html_document: default
+date: '2016-08-25'
+---
+
+```{r setup, include = FALSE}
+library(ggplot2)
+library(dplyr)
+
+smaller <- diamonds %>% 
+  filter(carat <= 2.5)
+```
+
+We have data about `r nrow(diamonds)` diamonds. Only 
+`r nrow(diamonds) - nrow(smaller)` are larger than
+2.5 carats. The distribution of the remainder is shown
+below:
+
+```{r, echo = FALSE}
+smaller %>% 
+  ggplot(aes(carat)) + 
+  geom_freqpoly(binwidth = 0.01)
+```
+
+```{r, fig.align='center',out.width="10%", echo=FALSE}
+knitr::include_graphics("/Users/leabreniere/SauvegardeLJK/These/MIMAR/Qualite/boxsystrho.png")
+```
+
